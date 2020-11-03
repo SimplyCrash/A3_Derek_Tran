@@ -1,0 +1,40 @@
+﻿  Location.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(2018,28): error C2676: binary '==': 'Suspect' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\Location.cpp(32): message : see reference to function template instantiation '_FwdIt std::remove<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,Suspect>(_FwdIt,const _FwdIt,const _Ty &)' being compiled
+          with
+          [
+              _FwdIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Suspect>>>,
+              _Ty=Suspect
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(2018,28): error C2676: binary '==': 'Item' does not define this operator or a conversion to a type acceptable to the predefined operator
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\Location.cpp(37): message : see reference to function template instantiation '_FwdIt std::remove<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>>,Item>(_FwdIt,const _FwdIt,const _Ty &)' being compiled
+          with
+          [
+              _FwdIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<Item>>>,
+              _Ty=Item
+          ]
+  MurderGame.cpp
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(59,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(70,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(76,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(111,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(134,11): warning C4930: 'Location storage(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(132,11): warning C4930: 'Location teachers_Lounge(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(127,11): warning C4930: 'Location classroomC(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(126,11): warning C4930: 'Location classroomB(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(139,11): warning C4930: 'Location clubRoom(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(125,11): warning C4930: 'Location classroomA(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(131,11): warning C4930: 'Location girls_Bathroom(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(129,11): warning C4930: 'Location cafeteria(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(138,11): warning C4930: 'Location library(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(137,11): warning C4930: 'Location pool(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(135,11): warning C4930: 'Location janitors_closet(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(130,11): warning C4930: 'Location boys_Bathroom(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(128,11): warning C4930: 'Location classroomD(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(136,11): warning C4930: 'Location game_room(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(133,11): warning C4930: 'Location principals_Office(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\MurderGame.cpp(145,20): warning C4018: '<': signed/unsigned mismatch
+  Player.cpp
+C:\Users\Derek\source\repos\A3-DerekTran\A3-DerekTran\Player.cpp(24,20): warning C4018: '<': signed/unsigned mismatch
+  Suspect.cpp
+  Generating Code...
