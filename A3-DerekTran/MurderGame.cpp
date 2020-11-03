@@ -121,22 +121,7 @@ void createLocationList() {
 } //COULD BE UNUSEFULL - DELETE
 
 void createLocationLists() {  
-	Location gym = Location();
-	Location classroomA = Location();
-	Location classroomB = Location();
-	Location classroomC = Location();
-	Location classroomD = Location();
-	Location cafeteria = Location();
-	Location boys_Bathroom = Location();
-	Location girls_Bathroom = Location();
-	Location teachers_Lounge = Location();
-	Location principals_Office = Location();
-	Location storage = Location();
-	Location janitors_closet = Location();
-	Location game_room = Location();
-	Location pool = Location();
-	Location library = Location();
-	Location clubRoom = Location();
+	
 
 	accessLocation(gym);
 	
@@ -153,9 +138,24 @@ void readList() {
 }
 
 void initialiseGame() {
+	Location gym = Location();
+	Location classroomA = Location();
+	Location classroomB = Location();
+	Location classroomC = Location();
+	Location classroomD = Location();
+	Location cafeteria = Location();
+	Location boys_Bathroom = Location();
+	Location girls_Bathroom = Location();
+	Location teachers_Lounge = Location();
+	Location principals_Office = Location();
+	Location storage = Location();
+	Location janitors_closet = Location();
+	Location game_room = Location();
+	Location pool = Location();
+	Location library = Location();
+	Location clubRoom = Location();
 	Player p1(askForString("Please enter your name:"));
 	createSuspectList();
-	createLocationList();
 	readList();
 	
 }
