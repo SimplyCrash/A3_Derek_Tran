@@ -31,6 +31,8 @@ public:
 	void setSuspectRole(string item);
 	void setSuspectAlibi(string item);
 	void ifMurder(bool murder);
+	//EXTRA FUNCTIONS
+	string printName();
 
 private:
 	//Variables

@@ -18,9 +18,8 @@ using std::vector;
 class Item {
 public:
 	//Constructors
-	Item(string name);
-	void setItemCondition(string item);
-	void setItemMurder(bool murder);
+	Item();
+	Item(string name, string description);
 	//Destructor
 	//~Item();
 	//Accessor Functions
@@ -28,10 +27,13 @@ public:
 	string getItemCondition();
 	bool getItemMurder();
 	//Mutator Functions
+	void setItemCondition(string item);
+	void setItemMurder(bool murder);
 private:
 	//Variables
 	string itemName;
 	string itemCondition;
+	string itemDescription;
 	bool itemMurder;
 };
 

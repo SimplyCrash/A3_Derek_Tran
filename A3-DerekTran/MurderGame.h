@@ -23,13 +23,22 @@ class MurderGame{
     private:
         vector<string> suspectList;
         vector<string> suspectNames;
-        vector<Location> locationList;
+        vector<string> suspectRoles;
+        vector<Suspect*> suspectVector;
+
+        vector<string> locationList;
+        vector<Location*> locationVector; //FUTURE PROBLEM WITH SCOPING
+
+        vector<string> itemList;
+        vector<Item*> itemVector;
+
+
 
     public:
         string askForString(string question);
         void readTextFile(string file);
         void createSuspectList();
-        void createLocationList();
+        void createItemList();
         void readList();
         void pause();
         void displayDescription();

@@ -1,0 +1,1 @@
+Knife_sharp knife;Skewer_pointy skewer;Hammer_fat hammer;flask_flask with sus liquid;glass_broken glass;rope_hard rope;candle_recently lit;wrench_metal wrench;bat_baseball bat;

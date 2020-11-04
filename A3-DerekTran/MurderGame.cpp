@@ -7,6 +7,8 @@
 
 #include "MurderGame.h"
 
+
+
 void MurderGame::pause() {
 	cout << "\n\n";
 	system("pause");
@@ -71,6 +73,7 @@ void MurderGame::createSuspectList() {
 		random = rand() % suspectList.size();
 		suspectList[random].erase();
 	}
+	
 
 	//Gets rid of the empty spaces left behind from .erase
 	for (int i = 0; i < suspectList.size(); i++) {
@@ -84,20 +87,20 @@ void MurderGame::createSuspectList() {
 	//Shuffle suspectNames
 	random_shuffle(suspectNames.begin(), suspectNames.end());
 
-	//Assignment
-	Suspect victim(suspectNames[1], "victim");
-	Suspect murderer(suspectNames[2], "murderer");
-	Suspect alibiPair1_1(suspectNames[3], "alibiPair1_1");
-	Suspect alibiPair1_2(suspectNames[4], "alibiPair1_2");
-	Suspect alibiPair2_1(suspectNames[5], "alibiPair2_1");
-	Suspect alibiPair2_2(suspectNames[6], "alibiPair2_2");
-	Suspect suspect(suspectNames[7], "suspect");
+	/*Assignment
+	Suspect victim(suspectNames[0], "victim");
+	Suspect murderer(suspectNames[1], "murderer");
+	Suspect alibiPair1_1(suspectNames[2], "alibiPair1_1");
+	Suspect alibiPair1_2(suspectNames[3], "alibiPair1_2");
+	Suspect alibiPair2_1(suspectNames[4], "alibiPair2_1");
+	Suspect alibiPair2_2(suspectNames[5], "alibiPair2_2");
+	Suspect suspect(suspectNames[6], "suspect");*/
 
 }
 
-void MurderGame::createLocationList() {
+void MurderGame::createItemList() {
 	//Instance Variables
-	ifstream fileToRead("locationList.txt");
+	ifstream fileToRead("itemDescription.txt");
 	string character = "";
 	string line = "";
 
@@ -118,7 +121,8 @@ void MurderGame::createLocationList() {
 		}
 	}
 
-} //COULD BE UNUSEFULL - DELETE
+} 
+
 
 void MurderGame::readList() {
 	for (int i = 0; i < suspectNames.size(); i++) {
@@ -127,26 +131,44 @@ void MurderGame::readList() {
 }
 
 void MurderGame::initialiseGame() {
-	Location gym = Location();
-	Location classroomA = Location();
-	Location classroomB = Location();
-	Location classroomC = Location();
-	Location classroomD = Location();
-	Location cafeteria = Location();
-	Location boys_Bathroom = Location();
-	Location girls_Bathroom = Location();
-	Location teachers_Lounge = Location();
-	Location principals_Office = Location();
-	Location storage = Location();
-	Location janitors_closet = Location();
-	Location game_room = Location();
-	Location pool = Location();
-	Location library = Location();
-	Location clubRoom = Location();
+	//Initialise Player name
 	Player p1(askForString("Please enter your name:"));
-	createSuspectList();
-	readList();
+
+	//Initialising list of Locations
+	locationList = { "gym", "classroom_A", "classroom_B", "classroom_C", "classroom_D", "cafeteria", "boys_Bathroom", "girls_bathroom", "teachers_Lounge", "principals_Office", "storage", "janitors_Closet", "game_Room", "pool", "library", "club_Room" };
+	locationVector = {};
+
+	for (int i = 0; i < locationList.size(); ++i) {
+		locationVector.push_back(new Location(locationList[i]));
+	}
 	
+	//Initialising list of Suspects
+	createSuspectList();
+	suspectRoles = { "victim", "murderer", "alibiPair1_1", "alibiPair1_2", "alibiPair2_1", "alibiPair2_2", "suspect" };
+	suspectVector = {};
+	for (int i = 0; i < suspectNames.size(); ++i) {
+		suspectVector.push_back(new Suspect(suspectNames[i], suspectRoles[i])); 
+		
+		int random = rand() % 16;
+		locationVector[random]->addSuspect(suspectVector[i]);
+	}
+
+	//Initialising list of items
+	itemList = { "knife", "skewer", "hammer", "flask", "glass", "rope", "candle", "wrench", "bat"};
+	itemVector = {};
+	for (int i = 0; i < suspectNames.size(); ++i) {
+		suspectVector.push_back(new Suspect(suspectNames[i], suspectRoles[i]));
+
+		int random = rand() % 16;
+		locationVector[random]->addSuspect(suspectVector[i]);
+	}
+	
+	for (int i = 0; i < locationList.size(); ++i) {
+		cout << locationList[i] << "\n";
+		locationVector[i]->printSuspects();
+	}
+	
+	readList();
 }
 
 void MurderGame::displayDescription() {

@@ -37,4 +37,7 @@ void Suspect::ifMurder(bool murder) {
 	suspectMurderer = murder;
 }
 
+string Suspect::printName() {
+	return suspectName;
+}
 

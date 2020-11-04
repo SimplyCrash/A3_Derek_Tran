@@ -6,3 +6,32 @@
 **************************************************/
 
 #include "Item.h"
+
+Item::Item() {
+	itemName = "Item";
+	itemCondition = "Clean";
+	itemDescription = "N/A";
+	itemMurder = true;
+}
+
+Item::Item(string name, string description) {
+	itemName = name;
+	itemDescription = description;
+}
+
+string Item::getItem() {
+	return itemName;
+}
+string Item::getItemCondition() {
+	return itemCondition;
+}
+bool Item::getItemMurder() {
+	return itemMurder;
+}
+
+void Item::setItemCondition(string item) {
+	itemCondition = item;
+}
+void Item::setItemMurder(bool murder) {
+	itemMurder = murder;
+}
