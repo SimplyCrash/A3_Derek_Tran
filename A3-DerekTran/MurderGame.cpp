@@ -7,12 +7,12 @@
 
 #include "MurderGame.h"
 
-void pause() {
+void MurderGame::pause() {
 	cout << "\n\n";
 	system("pause");
 }
 
-void readTextFile(string fileName) {
+void MurderGame::readTextFile(string fileName) {
 	ifstream fileToRead(fileName);
 
 	if (fileToRead.is_open()) {
@@ -29,7 +29,7 @@ void readTextFile(string fileName) {
 
 };
 
-string askForString(string question) {
+string MurderGame::askForString(string question) {
 	string userInput = "";
 	cout << "\n" + question;
 	getline(cin, userInput);
@@ -42,7 +42,7 @@ string askForString(string question) {
 	return userInput;
 }
 
-void createSuspectList() {
+void MurderGame::createSuspectList() {
 	//Instance Variables
 	ifstream fileToRead("suspectNames.txt");
 	string character = "";
@@ -95,7 +95,7 @@ void createSuspectList() {
 
 }
 
-void createLocationList() {
+void MurderGame::createLocationList() {
 	//Instance Variables
 	ifstream fileToRead("locationList.txt");
 	string character = "";
@@ -120,24 +120,13 @@ void createLocationList() {
 
 } //COULD BE UNUSEFULL - DELETE
 
-void createLocationLists() {  
-	
-
-	accessLocation(gym);
-	
-}
-
-void accessLocation(Location location) {
-	location.setLocationCondition("innocent");
-}
-
-void readList() {
+void MurderGame::readList() {
 	for (int i = 0; i < suspectNames.size(); i++) {
 		cout << suspectNames[i] << "\n";
 	}
 }
 
-void initialiseGame() {
+void MurderGame::initialiseGame() {
 	Location gym = Location();
 	Location classroomA = Location();
 	Location classroomB = Location();
@@ -160,32 +149,20 @@ void initialiseGame() {
 	
 }
 
-void displayDescription() {
+void MurderGame::displayDescription() {
 	readTextFile("murderMysteryDescription.txt");
 	pause();
 }
 
-void displayTitle() {
+void MurderGame::displayTitle() {
 	system("CLS");
 	readTextFile("murderMysteryTitle.txt");
 	pause();
 }
 
-void displayRules() {
+void MurderGame::displayRules() {
 	system("CLS");
 	readTextFile("murderMysteryRules.txt");
 	initialiseGame();
 	pause();
-}
-
-void runMenu(){
-	displayDescription();
-	displayTitle();
-	displayRules();
-}
-
-int main() {
-	runMenu();
-	pause();
-	return 0;
 }
