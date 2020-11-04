@@ -102,7 +102,8 @@ void MurderGame::createItemList() {
 	//Instance Variables
 	ifstream fileToRead("itemDescription.txt");
 	string character = "";
-	string line = "";
+	string read = "";
+	int count = 0;
 
 	//Opening File and storing the information within variable quotesTemp
 	if (fileToRead.is_open()) {
@@ -112,12 +113,18 @@ void MurderGame::createItemList() {
 
 	//Storing the information from quotesTemp into the vector quotes
 	for (int i = 0; i < character.length(); i++) {
-		if (character[i] == ';') {
-			locationList.push_back(line);
-			line = "";
+		if (character[i] == '_') {
+			<name>.push_back(read);
+			read = "";
+			count = 0;
+		}
+		else if (character[i] == ';') {
+			<description>.push_back(read);
+			read = "";
+			count = 1;
 		}
 		else {
-			line += character[i];
+			read += character[i];
 		}
 	}
 
