@@ -19,19 +19,27 @@
 using namespace std;
 using std::vector;
 
-vector<string> suspectList;
-vector<string> suspectNames;
-vector<Location> locationList;
+class MurderGame{
+    private:
+        vector<string> suspectList;
+        vector<string> suspectNames;
+        vector<Location> locationList;
 
-string askForString(string question);
-
-void displayDescription();
-void displayTitle();
-void displayRules();
-void initialiseGame();
-void playGame();
-void gameOver();
-void displayScore();
-void resetGame();
-void playerMovement(string userInput);
+    public:
+        string askForString(string question);
+        void readTextFile(string file);
+        void createSuspectList();
+        void createLocationList();
+        void readList();
+        void pause();
+        void displayDescription();
+        void displayTitle();
+        void displayRules();
+        void initialiseGame();
+        void playGame();
+        void gameOver();
+        void displayScore();
+        void resetGame();
+        void playerMovement(string userInput);
+};
 

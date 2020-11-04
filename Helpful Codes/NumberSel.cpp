@@ -51,3 +51,18 @@ int Game::intValidation(int min, int max) const {
 	return input;
 }
 */
+
+/*
+string askForString(string question) {
+	string userInput = "";
+	cout << "\n" + question;
+	getline(cin, userInput);
+
+	while (userInput.length() <= 0) {
+		cout << "You didn't seem to enter anything please try again: ";
+		getline(cin, userInput);
+	}
+
+	return userInput;
+}
+*/
