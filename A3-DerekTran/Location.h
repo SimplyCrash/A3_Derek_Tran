@@ -25,26 +25,27 @@ public:
 	//Accessor Functions
 	string getCondition();
 	vector<Suspect*> getSuspects();
-	vector<Item> getItems();
+	vector<Item*> getItems();
 	bool getIfMurder();
 	//Mutator Functions
 	void addSuspect(Suspect* suspect);
-	void removeSuspect(Suspect suspect);
-	void addItem(Item item);
-	void removeItem(Item item);
+	void removeSuspect(Suspect* suspect);
+	void addItem(Item* item);
+	void removeItem(Item* item);
 	void setLocationCondition(string condition);
 	void setLocationSuspects(Suspect suspect);
 	void setLocationItems(Item item);
 	void setLocationMurder(bool murder);
 	//EXTRA FUNCTIONS
 	void printSuspects();
+	void printItems();
 
 private:
 	//Variables
 	string locationName;
 	string locationCondition;
 	vector<Suspect*> locationSuspects;
-	vector<Item> locationItems;
+	vector<Item*> locationItems;
 	bool locationMurder;
 };
 

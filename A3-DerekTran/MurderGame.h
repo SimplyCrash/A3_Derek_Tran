@@ -29,7 +29,8 @@ class MurderGame{
         vector<string> locationList;
         vector<Location*> locationVector; //FUTURE PROBLEM WITH SCOPING
 
-        vector<string> itemList;
+        vector<string> itemNamesList;
+        vector<string> itemDescriptionList;
         vector<Item*> itemVector;
 
 

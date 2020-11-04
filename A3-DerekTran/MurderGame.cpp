@@ -114,12 +114,12 @@ void MurderGame::createItemList() {
 	//Storing the information from quotesTemp into the vector quotes
 	for (int i = 0; i < character.length(); i++) {
 		if (character[i] == '_') {
-			<name>.push_back(read);
+			itemNamesList.push_back(read);
 			read = "";
 			count = 0;
 		}
 		else if (character[i] == ';') {
-			<description>.push_back(read);
+			itemDescriptionList.push_back(read);
 			read = "";
 			count = 1;
 		}
@@ -161,18 +161,25 @@ void MurderGame::initialiseGame() {
 	}
 
 	//Initialising list of items
-	itemList = { "knife", "skewer", "hammer", "flask", "glass", "rope", "candle", "wrench", "bat"};
 	itemVector = {};
-	for (int i = 0; i < suspectNames.size(); ++i) {
-		suspectVector.push_back(new Suspect(suspectNames[i], suspectRoles[i]));
+	for (int i = 0; i < itemNamesList.size(); ++i) {
+		itemVector.push_back(new Item(itemNamesList[i], itemDescriptionList[i]));
 
 		int random = rand() % 16;
-		locationVector[random]->addSuspect(suspectVector[i]);
+		locationVector[random]->addItem(itemVector[i]);
 	}
 	
+	//Debug
+	cout << "\n";
 	for (int i = 0; i < locationList.size(); ++i) {
 		cout << locationList[i] << "\n";
 		locationVector[i]->printSuspects();
+	}
+
+	cout << "\n";
+	for (int i = 0; i < locationList.size(); ++i) {
+		cout << locationList[i] << "\n";
+		locationVector[i]->printItems();
 	}
 	
 	readList();

@@ -29,11 +29,15 @@ public:
 	//Mutator Functions
 	void setItemCondition(string item);
 	void setItemMurder(bool murder);
+	//Extra Functions
+	string Item::printName();
 private:
 	//Variables
 	string itemName;
 	string itemCondition;
 	string itemDescription;
 	bool itemMurder;
+	//Debug
+	string output;
 };
 

@@ -12,6 +12,8 @@ Item::Item() {
 	itemCondition = "Clean";
 	itemDescription = "N/A";
 	itemMurder = true;
+	// Debug
+	output = "";
 }
 
 Item::Item(string name, string description) {
@@ -35,3 +37,8 @@ void Item::setItemCondition(string item) {
 void Item::setItemMurder(bool murder) {
 	itemMurder = murder;
 }
+
+string Item::printName() {
+	output = itemName + ":" + itemDescription;
+	return output;
+};
