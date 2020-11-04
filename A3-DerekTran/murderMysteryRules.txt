@@ -1,15 +1,17 @@
-********************************************************************************************************
+*****************************************************************************************************************************************************
+To win the game, you have to question each of the suspects to determine who is lying – only the murderer will have an alibi that cannot be verified. 
+You must also discover where the murder took place, find and collect the murder weapon. Once you known who is the murderer and have the murder weapon, 
+you must gather all the suspects at the crime scene and accuse the murderer. If you have the correct place, the correct weapon and accuse the correct 
+suspect you close the case and win the game. If not, the murderer goes free and you lose the game.
+*****************************************************************************************************************************************************			Movement			
+*****************************************************************************************************************************************************
+To see the map layout: M
+To move around the crime scene: GOTO "room name"
+To leave the case at any time: QUIT
+*****************************************************************************************************************************************************			Rooms and Items
+*****************************************************************************************************************************************************			
 
-						
 
 
 
-						INSERT RULES
-
-
-
-
-
-
-
-********************************************************************************************************
+*****************************************************************************************************************************************************

@@ -28,7 +28,7 @@ public:
     string getAlibi();
 	bool getIfMurder();
 	//Mutator Functions
-	void setSuspectRole(string item);
+	void setSuspectRole(string suspect);
 	void setSuspectAlibi(string item);
 	void ifMurder(bool murder);
 	//EXTRA FUNCTIONS

@@ -38,6 +38,10 @@ void Item::setItemMurder(bool murder) {
 	itemMurder = murder;
 }
 
+void Item::setItemDescription(string description) {
+	itemDescription = description;
+}
+
 string Item::printName() {
 	output = itemName + ":" + itemDescription;
 	return output;

@@ -103,7 +103,6 @@ void MurderGame::createItemList() {
 	ifstream fileToRead("itemDescription.txt");
 	string character = "";
 	string read = "";
-	int count = 0;
 
 	//Opening File and storing the information within variable quotesTemp
 	if (fileToRead.is_open()) {
@@ -116,12 +115,10 @@ void MurderGame::createItemList() {
 		if (character[i] == '_') {
 			itemNamesList.push_back(read);
 			read = "";
-			count = 0;
 		}
 		else if (character[i] == ';') {
 			itemDescriptionList.push_back(read);
 			read = "";
-			count = 1;
 		}
 		else {
 			read += character[i];
@@ -129,7 +126,6 @@ void MurderGame::createItemList() {
 	}
 
 } 
-
 
 void MurderGame::readList() {
 	for (int i = 0; i < suspectNames.size(); i++) {
@@ -160,7 +156,16 @@ void MurderGame::initialiseGame() {
 		locationVector[random]->addSuspect(suspectVector[i]);
 	}
 
+	//Initialise alibi pair 1
+	suspectVector[2]->setSuspectAlibi(suspectVector[3]->getSuspect());
+	suspectVector[3]->setSuspectAlibi(suspectVector[2]->getSuspect());
+
+	//Initialise alibi pair 2
+	suspectVector[4]->setSuspectAlibi(suspectVector[5]->getSuspect());
+	suspectVector[5]->setSuspectAlibi(suspectVector[4]->getSuspect());
+
 	//Initialising list of items
+	createItemList();
 	itemVector = {};
 	for (int i = 0; i < itemNamesList.size(); ++i) {
 		itemVector.push_back(new Item(itemNamesList[i], itemDescriptionList[i]));
@@ -168,6 +173,13 @@ void MurderGame::initialiseGame() {
 		int random = rand() % 16;
 		locationVector[random]->addItem(itemVector[i]);
 	}
+
+	//Setting murder scene
+	int randomNumItem = rand() % itemVector.size();
+	itemVector[randomNumItem]->setItemMurder(true);
+
+	int randomNumLocation = rand() % locationVector.size();
+	locationVector[randomNumLocation]->setLocationMurder(true);
 	
 	//Debug
 	cout << "\n";

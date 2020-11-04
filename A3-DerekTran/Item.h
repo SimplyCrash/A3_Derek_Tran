@@ -29,8 +29,9 @@ public:
 	//Mutator Functions
 	void setItemCondition(string item);
 	void setItemMurder(bool murder);
+	void setItemDescription(string description);
 	//Extra Functions
-	string Item::printName();
+	string printName();
 private:
 	//Variables
 	string itemName;

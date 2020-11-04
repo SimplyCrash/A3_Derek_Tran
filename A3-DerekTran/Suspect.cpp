@@ -30,8 +30,8 @@ bool Suspect::getIfMurder() { return true;  }
 void Suspect::setSuspectRole(string item) { 
 	suspectRole = item;
 }
-void Suspect::setSuspectAlibi(string item) {
-	suspectAlibi = item;
+void Suspect::setSuspectAlibi(string suspect) {
+	suspectAlibi = suspect;
 }
 void Suspect::ifMurder(bool murder) {
 	suspectMurderer = murder;
