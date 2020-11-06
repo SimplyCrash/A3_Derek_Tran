@@ -15,14 +15,10 @@ Location::Location() {
 }
 
 Location::Location(string name) {
-	name = locationName;
+	locationName = name;
 }
 
 //ACCESSORS
-string Location::getLocationName() {
-	return locationName;
-}
-
 string Location::getCondition() { 
 	return locationCondition; 
 }
@@ -59,6 +55,22 @@ void Location::setLocationMurder(bool murder) {
 }
 
 //EXTRA FUNCTIONS
+string Location::printName() {
+	int check = 0;
+	string correctName = "";
+	for (int i = 0; i < locationName.length(); i++) {
+		if (check == 0) {
+			correctName[i] = toupper(locationName[i]);
+			check = 1;
+		}
+		else if (locationName[i] == '_') {
+			correctName[i] = ' ';
+			check = 0;
+		}
+	}
+	return correctName;
+}
+
 void Location::printSuspects() {
 	for (int i = 0; i < locationSuspects.size(); i++) {
 		cout << locationSuspects[i]->printName() << "\n";

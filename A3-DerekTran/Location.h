@@ -24,7 +24,6 @@ public:
 	Location(string name);
 	//Accessor Functions
 	string getCondition();
-	string getLocationName();
 	vector<Suspect*> getSuspects();
 	vector<Item*> getItems();
 	bool getIfMurder();
@@ -38,6 +37,7 @@ public:
 	void setLocationItems(Item item);
 	void setLocationMurder(bool murder);
 	//EXTRA FUNCTIONS
+	string printName();
 	void printSuspects();
 	void printItems();
 
