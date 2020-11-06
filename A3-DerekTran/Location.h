@@ -10,6 +10,7 @@
 #include <vector>
 #include <cstdlib>
 #include <list>
+#include <algorithm>
 #include "Suspect.h"
 #include "Item.h"
 #pragma once
@@ -23,6 +24,7 @@ public:
 	Location();
 	Location(string name);
 	//Accessor Functions
+	string getLocationName();
 	string getCondition();
 	vector<Suspect*> getSuspects();
 	vector<Item*> getItems();

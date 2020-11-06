@@ -69,10 +69,30 @@ void MurderGame::createSuspectList() {
 	}
 
 	//Chooses random 7 names
-	for (int i = 0; i < suspectList.size() - 7; i++) {
+	/*for (int i = 0; i < suspectList.size() - 7; i++) {
 		random = rand() % suspectList.size();
 		suspectList[random].erase();
-	}
+	}*/
+
+	int count = 0;
+	int check = 0;
+
+	do
+	{
+		check++;
+		count = 0;
+		random = rand() % suspectList.size();
+		suspectList[random].erase();
+
+		for (int i = 0; i < suspectList.size(); i++) {
+			if (!suspectList[i].empty()) {
+				count++;
+			}
+		}
+	} while (count > 7);
+
+	cout << check;
+	cout << suspectList.size();
 	
 
 	//Gets rid of the empty spaces left behind from .erase
@@ -87,14 +107,6 @@ void MurderGame::createSuspectList() {
 	//Shuffle suspectNames
 	random_shuffle(suspectNames.begin(), suspectNames.end());
 
-	/*Assignment
-	Suspect victim(suspectNames[0], "victim");
-	Suspect murderer(suspectNames[1], "murderer");
-	Suspect alibiPair1_1(suspectNames[2], "alibiPair1_1");
-	Suspect alibiPair1_2(suspectNames[3], "alibiPair1_2");
-	Suspect alibiPair2_1(suspectNames[4], "alibiPair2_1");
-	Suspect alibiPair2_2(suspectNames[5], "alibiPair2_2");
-	Suspect suspect(suspectNames[6], "suspect");*/
 
 }
 
@@ -137,6 +149,12 @@ void MurderGame::initialiseGame() {
 	//Initialise Player name
 	Player p1(askForString("Please enter your name:"));
 
+	string test = "test";
+
+	transform(test.begin(), test.end(), test.begin(), ::toupper);
+
+	cout << test;
+
 	//Initialising list of Locations
 	locationList = { "gym", "classroom_A", "classroom_B", "classroom_C", "classroom_D", "cafeteria", "boys_Bathroom", "girls_bathroom", "teachers_Lounge", "principals_Office", "storage", "janitors_Closet", "game_Room", "pool", "library", "club_Room" };
 	locationVector = {};
@@ -177,13 +195,14 @@ void MurderGame::initialiseGame() {
 	//Setting murder scene
 	//Setting Random Item as Murder Weapon
 	int randomNumItem = rand() % itemVector.size();
+	cout << randomNumItem;
 	itemVector[randomNumItem]->setItemMurder(true);
 
 	//Setting Random Location as Murder Scene
 	int randomNumLocation = rand() % locationVector.size();
-	locationMurderNum = randomNumLocation;
+	cout << randomNumLocation;
 	locationVector[randomNumLocation]->setLocationMurder(true);
-	
+
 	//Debug
 	cout << "\n";
 	for (int i = 0; i < locationList.size(); ++i) {
@@ -197,6 +216,7 @@ void MurderGame::initialiseGame() {
 		locationVector[i]->printItems();
 	}
 	
+	system("pause");
 	readList();
 }
 
@@ -204,15 +224,30 @@ void MurderGame::playGame() {
 	string border = "*****************************************************************************************************************************************************";
 	system("CLS");
 	cout << border << "\n";
-	cout << "You stand up and decided to get out of the classroom." << "\n";
-	system("pause");
+	cout << "You stand up and decided to get out of the classroom.";
+	cin.get();
 	cout << "While walking around the school, you start to hear commotion from a lit up room. Being the curious person you was you started you walk towards it." << "\n";
 	cout << "You arrive at a room with 7 other people." << "\n";
 	cout << "One person exclaims that they should go the principals office and get the master key to try and leave the school" << "\n";
 	cout << "Everyone agrees and decides to go try and find the principals office. Everyone leaves and goes on their seperate paths" << "\n";
 	cout << "You however still being awestruck by the situation you decided to stay behind and gather your thoughts" << "\n";
-	cout << "Moments pass... Suddenly you hear a scream coming from " << locationList[locationMurderNum];
-	system("pause");
+	cout << "Moments pass... Suddenly you hear a scream coming from "  << locationVector[locationMurderNum]->printName();
+	cin.get();
+	cout << "You decided to head towards the screaming" << "\n";
+	cout << "You arive at " << locationVector[locationMurderNum]->printName() << "\n";
+	cout << "You see everyone gathered around " << "'victim' dead on the floor";
+	//Discussion on what happens cbf writing for now
+	cout << "You all go your seperate ways to find the murderer among us";
+	cin.get();
+	
+	system("CLS");
+	cout << border << "\n";
+	cout << "At the crime scene" << "\n";
+	cout << border << "\n";
+	cout << "You are currently in the " << locationVector[locationMurderNum]->printName() << "\n";
+	//cout << Location Description
+	//cout << "What now? " << userInput;
+	//START THE GAME REPETITION
 	
 }
 
