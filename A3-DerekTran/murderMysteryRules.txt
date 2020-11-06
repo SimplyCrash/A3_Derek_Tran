@@ -3,15 +3,27 @@ To win the game, you have to question each of the suspects to determine who is l
 You must also discover where the murder took place, find and collect the murder weapon. Once you known who is the murderer and have the murder weapon, 
 you must gather all the suspects at the crime scene and accuse the murderer. If you have the correct place, the correct weapon and accuse the correct 
 suspect you close the case and win the game. If not, the murderer goes free and you lose the game.
+
 *****************************************************************************************************************************************************			Movement			
 *****************************************************************************************************************************************************
 To see the map layout: M
-To move around the crime scene: GOTO "room name"
+To move around the crime scene: GOTO room name
 To leave the case at any time: QUIT
+
 *****************************************************************************************************************************************************			Rooms and Items
 *****************************************************************************************************************************************************			
-
-
-
+To examine the current room: X ROOM or X room name
+To examine an item in the room: X item name
+To get an item from the current room: GET item name
+To drop an item in the current room: DROP item name
+To see what you're carrying: I or INV
 
 *****************************************************************************************************************************************************
+Suspects
+*****************************************************************************************************************************************************
+To question a suspect: Q suspect first name
+To accuse a suspect of murder: A suspect first name
+To gather all the suspects in the current room: G
+To review questioned suspects notes: R
+
+To read these notes again: H
