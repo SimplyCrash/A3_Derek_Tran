@@ -175,10 +175,13 @@ void MurderGame::initialiseGame() {
 	}
 
 	//Setting murder scene
+	//Setting Random Item as Murder Weapon
 	int randomNumItem = rand() % itemVector.size();
 	itemVector[randomNumItem]->setItemMurder(true);
 
+	//Setting Random Location as Murder Scene
 	int randomNumLocation = rand() % locationVector.size();
+	locationMurderNum = randomNumLocation;
 	locationVector[randomNumLocation]->setLocationMurder(true);
 	
 	//Debug
@@ -197,6 +200,22 @@ void MurderGame::initialiseGame() {
 	readList();
 }
 
+void MurderGame::playGame() {
+	string border = "*****************************************************************************************************************************************************";
+	system("CLS");
+	cout << border << "\n";
+	cout << "You stand up and decided to get out of the classroom." << "\n";
+	system("pause");
+	cout << "While walking around the school, you start to hear commotion from a lit up room. Being the curious person you was you started you walk towards it." << "\n";
+	cout << "You arrive at a room with 7 other people." << "\n";
+	cout << "One person exclaims that they should go the principals office and get the master key to try and leave the school" << "\n";
+	cout << "Everyone agrees and decides to go try and find the principals office. Everyone leaves and goes on their seperate paths" << "\n";
+	cout << "You however still being awestruck by the situation you decided to stay behind and gather your thoughts" << "\n";
+	cout << "Moments pass... Suddenly you hear a scream coming from " << locationList[locationMurderNum];
+	system("pause");
+	
+}
+
 void MurderGame::displayDescription() {
 	readTextFile("murderMysteryDescription.txt");
 	pause();
@@ -211,6 +230,4 @@ void MurderGame::displayTitle() {
 void MurderGame::displayRules() {
 	system("CLS");
 	readTextFile("murderMysteryRules.txt");
-	initialiseGame();
-	pause();
 }

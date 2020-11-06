@@ -19,6 +19,10 @@ Location::Location(string name) {
 }
 
 //ACCESSORS
+string Location::getLocationName() {
+	return locationName;
+}
+
 string Location::getCondition() { 
 	return locationCondition; 
 }

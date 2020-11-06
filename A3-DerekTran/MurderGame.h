@@ -21,6 +21,8 @@ using std::vector;
 
 class MurderGame{
     private:
+        int locationMurderNum;
+
         vector<string> suspectList;
         vector<string> suspectNames;
         vector<string> suspectRoles;
@@ -36,6 +38,7 @@ class MurderGame{
 
 
     public:
+        
         string askForString(string question);
         void readTextFile(string file);
         void createSuspectList();

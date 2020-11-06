@@ -24,24 +24,23 @@ int main() {
     game.displayDescription();
     game.displayTitle();
     game.displayRules();
+    game.initialiseGame();
 
-    /*
-    Intialise game will set up the game world.
+    
+    /*Intialise game will set up the game world.
     It will also ask if the player wants to play from where they left off
     by checking if a textfile 'savedProgress.txt'.
     If yes, it will set up the game world accordingly. (if time permits)
-    If no, it will ask for name.
-    /
-    //game.startGame();
-    /
-    Plays game
-    /
+    If no, it will ask for name.*/
+    
+    game.playGame();
+    
+    //Plays game
 
 
     // Give player the option to play again (needs changing)
-    int repeatChoice = 0;
+   /* int repeatChoice = 0;
 
-    /
     do {
         game.repeatMenu();
         repeatChoice = game.intValidation(1,2);
@@ -57,8 +56,8 @@ int main() {
             default:
                 break;
         }
-    } while (repeatChoice != 2);
-    */
+    } while (repeatChoice != 2);*/
+    
 
     game.pause();
 
