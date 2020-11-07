@@ -346,8 +346,6 @@ void MurderGame::playGame() {
 			}
 		}
 
-			//cout << Whos and what items are in the room
-
 		else if (userInputVector[0] == "EXAMINE") {
 			system("CLS");
 			cout << border << "\n";
@@ -365,13 +363,26 @@ void MurderGame::playGame() {
 		}
 
 		else if (userInputVector[0] == "GET") {
-			//cout << Item gathered
-			//PUT INTO IVENTORY VECTOR
+			itemIndex = returnIndex(userInputVector[1]);
+			if (itemIndex >= locationVector.size()) {
+				cout << "Wrong Parameters";
+			}
+			else {
+				locationVector[locationIndex]->removeItems(itemVector[itemIndex]); //ADD METHODS
+				p1.addInventory(itemVector[itemIndex]); //FIX PLAYER INSTANCE
+			}
 		}
 
 		else if (userInputVector[0] == "DROP") {
-			//cout << Item dropped
-			//REMOVE FROM IVENTORY VECTOR
+			itemIndex = returnIndex(userInputVector[1]);
+			if (itemIndex >= locationVector.size()) {
+				cout << "Wrong Parameters";
+			}
+			else {
+				locationVector[locationIndex]->addItems(itemVector[itemIndex]); //ADD METHODS
+				p1->removeInventory(itemVector[itemIndex]); //FIX PLAYER INSTANCE
+			}
+			
 		}
 
 		else if (userInputVector[0] == "I" || userInputVector[0] == "INV") {

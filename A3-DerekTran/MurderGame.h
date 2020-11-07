@@ -24,6 +24,7 @@ class MurderGame{
         int locationMurderNum;
         int itemMurderNum;
         int locationIndex;
+        int itemIndex;
         string userInputValue;
         vector<string>userInputVector;
         bool program = true;
