@@ -23,6 +23,7 @@ class MurderGame{
     private:
         int locationMurderNum;
         int itemMurderNum;
+        int locationIndex;
         string userInputValue;
         vector<string>userInputVector;
         bool program = true;
@@ -33,7 +34,8 @@ class MurderGame{
         vector<string> suspectRoles;
         vector<Suspect*> suspectVector;
 
-        vector<string> locationList;
+        vector<string> locationNamesList;
+        vector<string> locationDescriptionList;
         vector<Location*> locationVector; //FUTURE PROBLEM WITH SCOPING
 
         vector<string> itemNamesList;
@@ -43,11 +45,12 @@ class MurderGame{
 
 
     public:
-        
         string askForString(string question);
         void readTextFile(string file);
+        int returnIndex(string element);
         void createSuspectList();
         void createItemList();
+        void createLocationList();
         void readList();
         void pause();
         void displayDescription();

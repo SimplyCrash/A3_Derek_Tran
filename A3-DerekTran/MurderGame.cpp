@@ -44,6 +44,22 @@ string MurderGame::askForString(string question) {
 	return userInput;
 }
 
+int MurderGame::returnIndex(string element) {
+	int index = 0;
+	while (index < locationVector.size()) {
+		if (locationVector[index]->getLocationName() == element) {
+			break;
+		}
+			index++;
+	}
+	
+	if (index + 1 == locationVector.size()) {
+		cout << "Element doesnt exist"; //LOCATION DOESNT EXIST
+	}
+
+	return index;
+}
+
 void MurderGame::createSuspectList() {
 	//Instance Variables
 	ifstream fileToRead("suspectNames.txt");
@@ -112,7 +128,7 @@ void MurderGame::createSuspectList() {
 
 void MurderGame::createItemList() {
 	//Instance Variables
-	ifstream fileToRead("itemDescription.txt");
+	ifstream fileToRead("itemList.txt");
 	string character = "";
 	string read = "";
 
@@ -139,6 +155,35 @@ void MurderGame::createItemList() {
 
 } 
 
+void MurderGame::createLocationList() {
+	//Instance Variables
+	ifstream fileToRead("locationList.txt");
+	string character = "";
+	string read = "";
+
+	//Opening File and storing the information within variable quotesTemp
+	if (fileToRead.is_open()) {
+		getline(fileToRead, character);
+	}
+	fileToRead.close();
+
+	//Storing the information from quotesTemp into the vector quotes
+	for (int i = 0; i < character.length(); i++) {
+		if (character[i] == ':') {
+			locationNamesList.push_back(read);
+			read = "";
+		}
+		else if (character[i] == ';') {
+			locationDescriptionList.push_back(read);
+			read = "";
+		}
+		else {
+			read += char(toupper(character[i]));
+		}
+	}
+
+}
+
 void MurderGame::readList() {
 	for (int i = 0; i < suspectNames.size(); i++) {
 		cout << suspectNames[i] << "\n";
@@ -149,18 +194,12 @@ void MurderGame::initialiseGame() {
 	//Initialise Player name
 	Player p1(askForString("Please enter your name:"));
 
-	string test = "test";
-
-	transform(test.begin(), test.end(), test.begin(), ::toupper);
-
-	cout << test;
-
 	//Initialising list of Locations
-	locationList = { "gym", "classroom_A", "classroom_B", "classroom_C", "classroom_D", "cafeteria", "boys_Bathroom", "girls_bathroom", "teachers_Lounge", "principals_Office", "storage", "janitors_Closet", "game_Room", "pool", "library", "club_Room" };
+	createLocationList();
 	locationVector = {};
 
-	for (int i = 0; i < locationList.size(); ++i) {
-		locationVector.push_back(new Location(locationList[i]));
+	for (int i = 0; i < locationNamesList.size(); ++i) {
+		locationVector.push_back(new Location(locationNamesList[i], locationDescriptionList[i]));
 	}
 	
 	//Initialising list of Suspects
@@ -204,17 +243,17 @@ void MurderGame::initialiseGame() {
 	cout << locationVector[locationMurderNum]->printName();
 
 	//Debug
-	/*cout << "\n";
-	for (int i = 0; i < locationList.size(); ++i) {
-		cout << locationList[i] << "\n";
-		locationVector[i]->printSuspects();
+	cout << "\n";
+	for (int i = 0; i < locationNamesList.size(); ++i) {
+		cout << locationNamesList[i] << "\n";
+		locationVector[i]->debugPrintSuspects();
 	}
 
 	cout << "\n";
-	for (int i = 0; i < locationList.size(); ++i) {
-		cout << locationList[i] << "\n";
-		locationVector[i]->printItems();
-	}*/
+	for (int i = 0; i < locationNamesList.size(); ++i) {
+		cout << locationNamesList[i] << "\n";
+		locationVector[i]->debugPrintItems();
+	}
 	
 	system("pause");
 	//readList();
@@ -245,6 +284,7 @@ void MurderGame::playGame() {
 	cout << "At the crime scene" << "\n";
 	cout << border << "\n";
 	cout << "You are currently in the " << locationVector[locationMurderNum]->printName() << "\n";
+	locationIndex = locationMurderNum;
 	//cout << Location Description
 	//cout << "What now? " << userInput;
 	//START THE GAME REPETITION
@@ -268,31 +308,60 @@ void MurderGame::playGame() {
 		}
 
 		if (userInputVector[0] == "GOTO") {
-			currentLocation = userInputVector[1];
+			locationIndex = returnIndex(userInputVector[1]);
+			if (locationIndex >= locationVector.size()) {
+				cout << "Wrong Parameters";
+			}
+			else {
+				currentLocation = locationVector[locationIndex]->getLocationName();
 
-			system("CLS");
-			cout << border << "\n";
-			cout << "At the crime scene" << "\n";
-			cout << border << "\n";
-			cout << "You are currently in the " << currentLocation << "\n";
-			//cout << Location description
+				system("CLS");
+				cout << border << "\n";
+				cout << "At the crime scene" << "\n"; //CHANGE LATER IF STATEMENT TO CHECK IF ACUTAL CRIME SCENE
+				cout << border << "\n";
+				cout << "You are currently in the " << currentLocation << "\n";
+				cout << locationVector[locationIndex]->getLocationDescription();
+			}
 
 		}
 
-		else if(userInputVector[0] == "SEARCH"){
+		else if (userInputVector[0] == "SEARCH") {
 			system("CLS");
 			cout << border << "\n";
 			cout << "Investigating crime scene" << "\n";
 			cout << border << "\n";
-			//cout << Whos and what items are in the room
+
+			if (locationVector[locationIndex]->getItems().empty() && locationVector[locationIndex]->getSuspects().empty()) {
+				cout << "\nThere are no other entities in this room";
+			}
+			else {
+				for (int i = 0; i < locationVector[locationIndex]->getItems().size(); i++) {
+					cout << "\nThere seems to be a " << locationVector[locationIndex]->printItems() << " in the room";
+				}
+
+
+				for (int i = 0; i < locationVector[locationIndex]->getSuspects().size(); i++) {
+					cout << "\n" << locationVector[locationIndex]->printSuspects() << " is standing in the room.";
+				}
+			}
 		}
+
+			//cout << Whos and what items are in the room
 
 		else if (userInputVector[0] == "EXAMINE") {
 			system("CLS");
 			cout << border << "\n";
 			cout << "Examining Item" << "\n";
 			cout << border << "\n";
-			//cout << Item description
+			if (locationVector[locationIndex]->getItems().empty()) {
+				cout << "\nThere are no items to EXAMINE";
+			}
+			else {
+				for (int i = 0; i < locationVector[locationIndex]->getItems().size(); i++) {
+					locationVector[locationIndex]->printItems(); //NEED TO CHANGE TO DESCRIPTION ONLY
+				}
+			}
+
 		}
 
 		else if (userInputVector[0] == "GET") {

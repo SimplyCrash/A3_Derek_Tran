@@ -32,6 +32,7 @@ public:
 	void setItemDescription(string description);
 	//Extra Functions
 	string printName();
+	string printDescription();
 private:
 	//Variables
 	string itemName;

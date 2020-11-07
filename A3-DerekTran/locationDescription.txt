@@ -1,1 +1,0 @@
-Gym;Classroom A;Classroom B;Classroom C;Classroom D;Cafeteria;Boy's Bathroom;Girl's Bathroom;Teacher's Lounge;Principal's Office;Storage;Janitor's Closet;Game Room;Pool;Library;Club Room;

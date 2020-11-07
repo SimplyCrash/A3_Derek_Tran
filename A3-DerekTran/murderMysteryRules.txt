@@ -13,9 +13,9 @@ To leave the case at any time: QUIT
 
 *****************************************************************************************************************************************************
 Rooms and Items
-*****************************************************************************************************************************************************			
-To examine the current room: X ROOM or X room name
-To examine an item in the room: X item name
+*****************************************************************************************************************************************************
+To examine the current room: SEARCH room
+To examine an item in the room: EXAMINE item name
 To get an item from the current room: GET item name
 To drop an item in the current room: DROP item name
 To see what you're carrying: I or INV
@@ -23,9 +23,9 @@ To see what you're carrying: I or INV
 *****************************************************************************************************************************************************
 Suspects
 *****************************************************************************************************************************************************
-To question a suspect: Q suspect first name
-To accuse a suspect of murder: A suspect first name
+To question a suspect: QUESTION suspect first name
 To gather all the suspects in the current room: G
+To accuse a suspect of murder: ACCUSE suspect first name (Must gather all suspects first)
 To review questioned suspects notes: R
 
 To read these notes again: H

@@ -14,8 +14,9 @@ Location::Location() {
 	locationItems = {};
 }
 
-Location::Location(string name) {
+Location::Location(string name, string description) {
 	locationName = name;
+	locationDescription = description;
 }
 
 //ACCESSORS
@@ -24,6 +25,9 @@ string Location::getLocationName() {
 }
 string Location::getCondition() { 
 	return locationCondition; 
+}
+string Location::getLocationDescription() {
+	return locationDescription;
 }
 vector<Suspect*> Location::getSuspects() { 
 	return locationSuspects; 
@@ -53,6 +57,9 @@ void Location::removeItem(Item* item) {
 void Location::setLocationCondition(string condition) { 
 	locationCondition = condition; 
 }
+void Location::setLocationDescription(string description) {
+	locationDescription = description;
+}
 void Location::setLocationMurder(bool murder) { 
 	locationMurder = murder; 
 }
@@ -80,14 +87,26 @@ string Location::printName() {
     return correctName;
 }
 
-void Location::printSuspects() {
+void Location::debugPrintSuspects() {
 	for (int i = 0; i < locationSuspects.size(); i++) {
 		cout << locationSuspects[i]->printName() << "\n";
 	}
 }
 
-void Location::printItems() {
+void Location::debugPrintItems() {
 	for (int i = 0; i < locationItems.size(); i++) {
-		cout << locationItems[i]->printName() << "\n";
+		cout << locationItems[i]->printName() << ":" << locationItems[i]->printDescription() << "\n";
+	}
+}
+
+string Location::printSuspects() {
+	for (int i = 0; i < locationSuspects.size(); i++) {
+		return locationSuspects[i]->printName();
+	}
+}
+
+string Location::printItems() {
+	for (int i = 0; i < locationItems.size(); i++) {
+		return locationItems[i]->printName();
 	}
 }

@@ -22,10 +22,11 @@ class Location{
 public:
 	//Constructors
 	Location();
-	Location(string name);
+	Location(string name, string description);
 	//Accessor Functions
 	string getLocationName();
 	string getCondition();
+	string getLocationDescription();
 	vector<Suspect*> getSuspects();
 	vector<Item*> getItems();
 	bool getIfMurder();
@@ -37,14 +38,18 @@ public:
 	void setLocationCondition(string condition);
 	void setLocationSuspects(Suspect suspect);
 	void setLocationItems(Item item);
+	void setLocationDescription(string description);
 	void setLocationMurder(bool murder);
 	//EXTRA FUNCTIONS
 	string printName();
-	void printSuspects();
-	void printItems();
+	string printSuspects();
+	string printItems();
+	void debugPrintSuspects();
+	void debugPrintItems();
 
 private:
 	//Variables
+	string locationDescription;
 	string locationName;
 	string locationCondition;
 	vector<Suspect*> locationSuspects;

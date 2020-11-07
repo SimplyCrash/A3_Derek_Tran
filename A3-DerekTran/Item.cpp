@@ -43,6 +43,11 @@ void Item::setItemDescription(string description) {
 }
 
 string Item::printName() {
-	output = itemName + ":" + itemDescription;
+	output = itemName;
 	return output;
-};
+}
+
+string Item::printDescription() {
+	output = itemDescription;
+	return output;
+}
