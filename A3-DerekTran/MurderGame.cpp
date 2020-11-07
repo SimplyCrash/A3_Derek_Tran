@@ -194,17 +194,17 @@ void MurderGame::initialiseGame() {
 
 	//Setting murder scene
 	//Setting Random Item as Murder Weapon
-	int randomNumItem = rand() % itemVector.size();
-	cout << randomNumItem;
-	itemVector[randomNumItem]->setItemMurder(true);
+	itemMurderNum = rand() % itemVector.size();
+	itemVector[itemMurderNum]->setItemMurder(true);
+	cout << itemVector[itemMurderNum]->printName();
 
 	//Setting Random Location as Murder Scene
-	int randomNumLocation = rand() % locationVector.size();
-	cout << randomNumLocation;
-	locationVector[randomNumLocation]->setLocationMurder(true);
+	locationMurderNum = rand() % locationVector.size();
+	locationVector[locationMurderNum]->setLocationMurder(true);
+	cout << locationVector[locationMurderNum]->printName();
 
 	//Debug
-	cout << "\n";
+	/*cout << "\n";
 	for (int i = 0; i < locationList.size(); ++i) {
 		cout << locationList[i] << "\n";
 		locationVector[i]->printSuspects();
@@ -214,10 +214,10 @@ void MurderGame::initialiseGame() {
 	for (int i = 0; i < locationList.size(); ++i) {
 		cout << locationList[i] << "\n";
 		locationVector[i]->printItems();
-	}
+	}*/
 	
 	system("pause");
-	readList();
+	//readList();
 }
 
 void MurderGame::playGame() {
@@ -235,7 +235,7 @@ void MurderGame::playGame() {
 	cin.get();
 	cout << "You decided to head towards the screaming" << "\n";
 	cout << "You arive at " << locationVector[locationMurderNum]->printName() << "\n";
-	cout << "You see everyone gathered around " << "'victim' dead on the floor";
+	cout << "You see everyone gathered around " << "'victim' dead on the floor" << "\n";
 	//Discussion on what happens cbf writing for now
 	cout << "You all go your seperate ways to find the murderer among us";
 	cin.get();
@@ -248,6 +248,119 @@ void MurderGame::playGame() {
 	//cout << Location Description
 	//cout << "What now? " << userInput;
 	//START THE GAME REPETITION
+
+	do
+	{
+		string placeHolder = "";
+		vector<string> userInputVector = {};
+
+		userInputValue = askForString("What now?");
+
+		for (int i = 0; i <= userInputValue.length(); i++) {
+			if (userInputValue[i] == ' ' || userInputValue[i] == NULL) {
+				userInputVector.push_back(placeHolder);
+				placeHolder = "";
+			}
+			else {
+				placeHolder += char(toupper(userInputValue[i]));
+			}
+
+		}
+
+		if (userInputVector[0] == "GOTO") {
+			currentLocation = userInputVector[1];
+
+			system("CLS");
+			cout << border << "\n";
+			cout << "At the crime scene" << "\n";
+			cout << border << "\n";
+			cout << "You are currently in the " << currentLocation << "\n";
+			//cout << Location description
+
+		}
+
+		else if(userInputVector[0] == "SEARCH"){
+			system("CLS");
+			cout << border << "\n";
+			cout << "Investigating crime scene" << "\n";
+			cout << border << "\n";
+			//cout << Whos and what items are in the room
+		}
+
+		else if (userInputVector[0] == "EXAMINE") {
+			system("CLS");
+			cout << border << "\n";
+			cout << "Examining Item" << "\n";
+			cout << border << "\n";
+			//cout << Item description
+		}
+
+		else if (userInputVector[0] == "GET") {
+			//cout << Item gathered
+			//PUT INTO IVENTORY VECTOR
+		}
+
+		else if (userInputVector[0] == "DROP") {
+			//cout << Item dropped
+			//REMOVE FROM IVENTORY VECTOR
+		}
+
+		else if (userInputVector[0] == "I" || userInputVector[0] == "INV") {
+			system("CLS");
+			cout << border << "\n";
+			cout << "Inventory" << "\n";
+			cout << border << "\n";
+			//FOR LOOP TO DISPLAY IVENTORY VECTOR
+		}
+
+		else if (userInputVector[0] == "QUESTION") {
+			system("CLS");
+			cout << border << "\n";
+			cout << "Questioning suspect" << "\n";
+			cout << border << "\n";
+			//DISPLAY SUSPECT ALIBI
+			//AND STORE IN ARRAY
+		}
+
+		else if (userInputVector[0] == "G") {
+			system("CLS");
+			cout << border << "\n";
+			cout << "Accusation stage" << "\n";
+			cout << border << "\n";
+			/*userInput = askForString("Are you sure?");
+			if (userInput == "YES"){
+				suspectAccusation = askForString("Who would you like to accuse?");
+				itemAccusation = askForstring("What item did the murderer use?);
+			}
+
+			if (userInput == "NO"){
+			break
+			}*/
+			
+		}
+
+		else if (userInputVector[0] == "R") {
+			//OPEN SUSPECTNOTES ARRAY
+		}
+
+		else if (userInputVector[0] == "H") {
+			system("CLS");
+			readTextFile("murderMysteryRules.txt");
+			pause();
+		}
+
+		else if (userInputVector[0] == "M") {
+			system("CLS");
+			readTextFile("mapLayout.txt");
+			pause();
+		}
+
+		else if (userInputVector[0] == "QUIT") {
+			program = false;
+		}
+
+	} while (program);
+	
 	
 }
 

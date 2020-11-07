@@ -22,6 +22,11 @@ using std::vector;
 class MurderGame{
     private:
         int locationMurderNum;
+        int itemMurderNum;
+        string userInputValue;
+        vector<string>userInputVector;
+        bool program = true;
+        string currentLocation;
 
         vector<string> suspectList;
         vector<string> suspectNames;
