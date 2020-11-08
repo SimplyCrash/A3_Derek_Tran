@@ -20,10 +20,10 @@ Player::Player(string name) {
 
 string Player::getName() {return playerName;};
 string Player::getInventory() {
-	string inventory = "inventory";
+	string inventory = "";
 	for (int i = 0; i < playerInventory.size(); i++){
 		string newLine = "\n";
-		//inventory += playerInventory[i].getItem() + newLine;
+		inventory += playerInventory[i].getItem() + newLine;
 		}
 	return inventory;
 	}
@@ -35,3 +35,9 @@ void Player::removeInventory(Item) {};
 void Player::updateTurn() {};
 void Player::updateScore(int newScore) {};
 void Player::resetScore(int score) {};
+
+void Player::printInventory() {
+	for (int i = 0; i < playerInventory.size(); i++) {
+
+	}
+}

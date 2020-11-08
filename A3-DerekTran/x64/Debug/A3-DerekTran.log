@@ -1,10 +1,2 @@
-﻿  Item.cpp
-  Location.cpp
-  Main.cpp
-C:\Users\Derek\source\repos\A3_Derek_Tran\A3-DerekTran\Main.cpp(20,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  MurderGame.cpp
-  Player.cpp
-  Generating Code...
-C:\Users\Derek\source\repos\A3_Derek_Tran\A3-DerekTran\Location.cpp(106): warning C4715: 'Location::printSuspects': not all control paths return a value
-C:\Users\Derek\source\repos\A3_Derek_Tran\A3-DerekTran\Location.cpp(112): warning C4715: 'Location::printItems': not all control paths return a value
+﻿  MurderGame.cpp
   A3-DerekTran.vcxproj -> C:\Users\Derek\source\repos\A3_Derek_Tran\x64\Debug\A3-DerekTran.exe

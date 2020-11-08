@@ -99,14 +99,10 @@ void Location::debugPrintItems() {
 	}
 }
 
-string Location::printSuspects() {
-	for (int i = 0; i < locationSuspects.size(); i++) {
-		return locationSuspects[i]->printName();
-	}
+string Location::printSuspect(int index) {
+		return locationSuspects[index]->printName();
 }
 
-string Location::printItems() {
-	for (int i = 0; i < locationItems.size(); i++) {
-		return locationItems[i]->printName();
-	}
+string Location::printItem(int index) {
+		return locationItems[index]->printName();
 }

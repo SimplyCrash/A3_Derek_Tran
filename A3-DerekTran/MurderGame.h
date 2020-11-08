@@ -24,8 +24,10 @@ class MurderGame{
         int locationMurderNum;
         int itemMurderNum;
         int locationIndex;
+        int suspectIndex;
         int itemIndex;
         string userInputValue;
+        vector<string> alibiVector;
         vector<string>userInputVector;
         bool program = true;
         string currentLocation;
@@ -48,7 +50,8 @@ class MurderGame{
     public:
         string askForString(string question);
         void readTextFile(string file);
-        int returnIndex(string element);
+        int returnLocationIndex(string element);
+        int returnSuspectIndex(string element);
         void createSuspectList();
         void createItemList();
         void createLocationList();

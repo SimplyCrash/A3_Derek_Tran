@@ -35,6 +35,8 @@ public:
 	void updateTurn();
 	void updateScore(int newScore);
 	void resetScore(int score);
+	//Extra functions
+	void printInventory();
 
 private:
 	//Variables

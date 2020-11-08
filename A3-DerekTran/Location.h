@@ -42,8 +42,8 @@ public:
 	void setLocationMurder(bool murder);
 	//EXTRA FUNCTIONS
 	string printName();
-	string printSuspects();
-	string printItems();
+	string printSuspect(int index);
+	string printItem(int index);
 	void debugPrintSuspects();
 	void debugPrintItems();
 
