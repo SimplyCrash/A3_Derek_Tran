@@ -34,7 +34,12 @@ void Player::addInventory(Item* item) {
 	playerInventory.push_back(item);
 };
 void Player::removeInventory(Item* item) {
-	;
+	vector<Item*> newList = {};
+	for (int i = 0; i < playerInventory.size(); i++)
+		if (locationItems[i] != item) {
+			newList.push_back(item);
+		}
+	playerInventory = newList;
 };
 void Player::updateTurn() {};
 void Player::updateScore(int newScore) {};
