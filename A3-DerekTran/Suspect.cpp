@@ -25,7 +25,9 @@ Suspect::~Suspect() {}
 string Suspect::getSuspect() { return suspectName; }
 string Suspect::getRole() { return suspectRole; }
 string Suspect::getAlibi() { return suspectAlibi; }
-bool Suspect::getIfMurder() { return true;  }
+bool Suspect::getIfMurder() { 
+	return true;  
+}
 
 void Suspect::setSuspectRole(string item) { 
 	suspectRole = item;

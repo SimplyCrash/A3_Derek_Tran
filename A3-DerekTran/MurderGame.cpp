@@ -7,8 +7,6 @@
 
 #include "MurderGame.h"
 
-
-
 void MurderGame::pause() {
 	cout << "\n\n";
 	system("pause");
@@ -53,7 +51,7 @@ int MurderGame::returnLocationIndex(string element) {
 			index++;
 	}
 	
-	if (index + 1 == locationVector.size()) {
+	if (index + 2 == locationVector.size()) {
 		cout << "Element doesnt exist"; //LOCATION DOESNT EXIST
 	}
 
@@ -69,7 +67,24 @@ int MurderGame::returnSuspectIndex(string element) {
 		index++;
 	}
 
-	if (index + 1 == suspectVector.size()) {
+	if (index + 2 == suspectVector.size()) {
+		cout << "Element doesnt exist"; //LOCATION DOESNT EXIST
+	}
+
+	return index;
+}
+
+int MurderGame::returnItemIndex(int locationIndex, string element) {
+	int index = 0;
+	while (index < locationVector[locationIndex]->getItems().size()) {
+		vector<Item*> items = locationVector[locationIndex]->getItems();
+		if (items[index]->getItem() == element) {
+			break;
+		}
+		index++;
+	}
+
+	if (index + 2 == locationVector[locationIndex]->getItems().size()) {
 		cout << "Element doesnt exist"; //LOCATION DOESNT EXIST
 	}
 
@@ -123,9 +138,6 @@ void MurderGame::createSuspectList() {
 		}
 	} while (count > 7);
 
-	cout << check;
-	cout << suspectList.size();
-	
 
 	//Gets rid of the empty spaces left behind from .erase
 	for (int i = 0; i < suspectList.size(); i++) {
@@ -208,7 +220,7 @@ void MurderGame::readList() {
 
 void MurderGame::initialiseGame() {
 	//Initialise Player name
-	Player p1(askForString("Please enter your name:"));
+	playerName = (askForString("Please enter your name:"));
 
 	//Initialising list of Locations
 	createLocationList();
@@ -216,7 +228,7 @@ void MurderGame::initialiseGame() {
 
 	for (int i = 0; i < locationNamesList.size(); ++i) {
 		locationVector.push_back(new Location(locationNamesList[i], locationDescriptionList[i]));
-	}
+	} //THIS IS WHERE THE ERROR OCCURS
 	
 	//Initialising list of Suspects
 	createSuspectList();
@@ -226,7 +238,9 @@ void MurderGame::initialiseGame() {
 		suspectVector.push_back(new Suspect(suspectNames[i], suspectRoles[i])); 
 		
 		int random = rand() % 16;
-		locationVector[random]->addSuspect(suspectVector[i]);
+		if (i != 0) {
+			locationVector[random]->addSuspect(suspectVector[i]);
+		}
 	}
 
 	//Initialise alibi pair 1
@@ -243,7 +257,7 @@ void MurderGame::initialiseGame() {
 	{
 		random = rand() % 7;
 		
-	} while (random = 1);
+	} while (random == 1);
 
 	suspectVector[1]->setSuspectAlibi(suspectVector[random]->getSuspect());
 	
@@ -268,6 +282,9 @@ void MurderGame::initialiseGame() {
 	locationMurderNum = rand() % locationVector.size();
 	locationVector[locationMurderNum]->setLocationMurder(true);
 	cout << locationVector[locationMurderNum]->printName();
+
+	//Setting victim in location
+	locationVector[locationMurderNum]->addSuspect(suspectVector[0]);
 
 	//Debug
 	cout << "\n";
@@ -301,7 +318,7 @@ void MurderGame::playGame() {
 	cin.get();
 	cout << "You decided to head towards the screaming" << "\n";
 	cout << "You arive at " << locationVector[locationMurderNum]->printName() << "\n";
-	cout << "You see everyone gathered around " << "'victim' dead on the floor" << "\n";
+	cout << "You see everyone gathered around " <<  suspectVector[0]->getSuspect() << " dead on the floor" << "\n";
 	//Discussion on what happens cbf writing for now
 	cout << "You all go your seperate ways to find the murderer among us";
 	cin.get();
@@ -316,35 +333,72 @@ void MurderGame::playGame() {
 	//cout << "What now? " << userInput;
 	//START THE GAME REPETITION
 
+	Player p1(playerName);
+	program = true;
 	do
 	{
 		string placeHolder = "";
 		vector<string> userInputVector = {};
 
-		userInputValue = askForString("What now?");
+		userInputValue = askForString("What now?"); 
 
-		for (int i = 0; i <= userInputValue.length(); i++) {
-			if (userInputValue[i] == ' ' || userInputValue[i] == NULL) {
-				userInputVector.push_back(placeHolder);
-				placeHolder = "";
-			}
-			else {
-				placeHolder += char(toupper(userInputValue[i]));
-			}
+		int i = 0;
+		userInputVector = {};
+		placeHolder = "";
 
+		//Seperates the userInputVale into command and parameter
+		while (userInputValue[i] != ' ' && i < userInputValue.size()) {
+			placeHolder += char(toupper(userInputValue[i]));
+			cout << userInputValue[i] << "\n";
+			i++;
 		}
 
-		if (userInputVector[0] == "GOTO") {
+		userInputVector.push_back(placeHolder);
+		placeHolder = "";
+
+
+		if (i < userInputValue.size()) {
+			i++;
+			for (int j = i; j < userInputValue.size(); j++) {
+				if (userInputValue[j] == ' ') {
+					placeHolder += '_';
+				}
+				else {
+					placeHolder += char(toupper(userInputValue[j]));
+				}
+			}
+		}
+		
+		userInputVector.push_back(placeHolder);
+
+		//DEBUG
+		cout << "\n";
+		for (int i = 0; i < locationNamesList.size(); ++i) {
+			cout << locationNamesList[i] << "\n";
+			locationVector[i]->debugPrintItems();
+		}
+
+		pause();
+
+		if (userInputVector[0] == "GOTO") { //DONE
 			locationIndex = returnLocationIndex(userInputVector[1]);
 			if (locationIndex >= locationVector.size()) {
-				cout << "Wrong Parameters";
+				cout << "Wrong GOTO Parameters";
 			}
 			else {
+				string title = "";
 				currentLocation = locationVector[locationIndex]->getLocationName();
 
 				system("CLS");
+				if (locationVector[locationIndex]->getIfMurder()) {
+					title = "At the crime scene";
+				}
+				else {
+					title = "Investigation";
+				}
+
 				cout << border << "\n";
-				cout << "At the crime scene" << "\n"; //CHANGE LATER IF STATEMENT TO CHECK IF ACUTAL CRIME SCENE
+				cout << title << "\n";
 				cout << border << "\n";
 				cout << "You are currently in the " << currentLocation << "\n";
 				cout << locationVector[locationIndex]->getLocationDescription();
@@ -352,7 +406,7 @@ void MurderGame::playGame() {
 
 		}
 
-		else if (userInputVector[0] == "SEARCH") {
+		else if (userInputVector[0] == "SEARCH") { //DONE
 			system("CLS");
 			cout << border << "\n";
 			cout << "Investigating crime scene" << "\n";
@@ -364,16 +418,19 @@ void MurderGame::playGame() {
 			else {
 				for (int i = 0; i < locationVector[locationIndex]->getItems().size(); i++) {
 					cout << "\nThere seems to be a " << locationVector[locationIndex]->printItem(i) << " in the room";
-					cout << "Item Check";
 				}
-
 
 				for (int i = 0; i < locationVector[locationIndex]->getSuspects().size(); i++) {
-					cout << "\n" << locationVector[locationIndex]->printSuspect(i) << " is standing in the room.";
-					cout << "Suspect Check";
+					if (locationVector[locationIndex]->getSuspects()[i]->getRole() == "victim") {
+						cout << "\n" << suspectVector[0]->getSuspect() << "is dead on the floor";
+					}
+					else {
+						cout << "\n" << locationVector[locationIndex]->printSuspect(i) << " is standing in the room.";
+					}
+					
 				}
 			}
-			cout << "Outside If";
+
 		}
 
 		else if (userInputVector[0] == "EXAMINE") {
@@ -393,24 +450,26 @@ void MurderGame::playGame() {
 		}
 
 		else if (userInputVector[0] == "GET") {
-			itemIndex = returnLocationIndex(userInputVector[1]);
-			if (itemIndex >= locationVector.size()) {
-				cout << "Wrong Parameters";
+			itemIndex = returnItemIndex(locationIndex, userInputVector[1]);
+			cout << "\t\t" << itemIndex << "\n";
+			cout << "\t\t" << locationVector[locationIndex]->getItems().size() << "\n";
+			if (itemIndex >= locationVector[locationIndex]->getItems().size()) {
+				cout << "Wrong GET parameters";
 			}
 			else {
-				//locationVector[locationIndex]->removeItems(itemVector[itemIndex]); //Removes item from location
-				//p1.addInventory(itemVector[itemIndex]); //FIX PLAYER INSTANCE //Adds item to inventory
+				locationVector[locationIndex]->removeItem(itemVector[itemIndex]); //Removes item from location
+				p1.addInventory(itemVector[itemIndex]); //FIX PLAYER INSTANCE //Adds item to inventory
 			}
 		}
 
 		else if (userInputVector[0] == "DROP") {
-			itemIndex = returnLocationIndex(userInputVector[1]);
-			if (itemIndex >= locationVector.size()) {
-				cout << "Wrong Parameters";
+			itemIndex = returnItemIndex(locationIndex, userInputVector[1]);
+			if (itemIndex >= locationVector[locationIndex]->getItems().size()) {
+				cout << "Wrong DROP Parameters";
 			}
 			else {
-				//locationVector[locationIndex]->addItems(itemVector[itemIndex]); //Adds item to location
-				//p1->removeInventory(itemVector[itemIndex]); //Removes item from inventory
+				locationVector[locationIndex]->addItem(itemVector[itemIndex]); //Adds item to location
+				p1.removeInventory(itemVector[itemIndex]); //Removes item from inventory
 			}
 			
 		}
@@ -425,17 +484,29 @@ void MurderGame::playGame() {
 			//FOR LOOP TO DISPLAY IVENTORY VECTOR
 		}
 
-		else if (userInputVector[0] == "QUESTION") {
+		else if (userInputVector[0] == "QUESTION") { //DONE
 			system("CLS");
 
+			string alibiString = "";
 			suspectIndex = returnSuspectIndex(userInputVector[1]);
 			
 			cout << border << "\n";
 			cout << "Questioning suspect" << "\n";
 			cout << border << "\n";
-			alibiVector.push_back(suspectVector[suspectIndex]->getAlibi()) ; //NEED CHECK IF THEY QUESTION TWICE
-			//DISPLAY SUSPECT ALIBI
-			//AND STORE IN ARRAY
+
+			//Printing Suspect's Alibi
+			if (suspectIndex == 6) {
+				alibiString = userInputVector[1] + " says they were with no one";
+			}
+			else {
+				alibiString = userInputVector[1] + " says they were with " + suspectVector[suspectIndex]->getAlibi();
+			}
+			
+			cout << alibiString;
+
+			//Storing in Alibi Vector for Suspect Notes
+			alibiVector.push_back(alibiString) ; //NEED CHECK IF THEY QUESTION TWICE
+		
 		}
 
 		else if (userInputVector[0] == "G") {
@@ -455,8 +526,14 @@ void MurderGame::playGame() {
 			
 		}
 
-		else if (userInputVector[0] == "R") {
-			//OPEN SUSPECTNOTES ARRAY
+		else if (userInputVector[0] == "R") { //DONE
+			system("CLS");
+			cout << border << "\n";
+			cout << "Reviewing suspects alibis" << "\n";
+			cout << border << "\n";
+			for (int i = 0; i < alibiVector.size(); i++) {
+				cout << alibiVector[i] << "\n";
+			}
 		}
 
 		else if (userInputVector[0] == "H") {

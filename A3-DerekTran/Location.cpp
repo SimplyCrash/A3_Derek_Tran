@@ -35,8 +35,8 @@ vector<Suspect*> Location::getSuspects() {
 vector<Item*> Location::getItems() { 
 	return locationItems; 
 }
-bool getIfMurder() { 
-	return true; 
+bool Location::getIfMurder() { 
+	return locationMurder; 
 }
 
 //MUTATORS

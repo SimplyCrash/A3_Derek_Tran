@@ -23,7 +23,7 @@ string Player::getInventory() {
 	string inventory = "";
 	for (int i = 0; i < playerInventory.size(); i++){
 		string newLine = "\n";
-		inventory += playerInventory[i].getItem() + newLine;
+		inventory += playerInventory[i]->getItem() + newLine;
 		}
 	return inventory;
 	}
