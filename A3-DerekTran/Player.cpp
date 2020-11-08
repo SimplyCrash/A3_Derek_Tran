@@ -30,8 +30,12 @@ string Player::getInventory() {
 int Player::getTurn() {return playerTurn;};
 int Player::getScore() {return playerScore;};
 
-void Player::addInventory(Item) {} ;
-void Player::removeInventory(Item) {};
+void Player::addInventory(Item* item) {
+	playerInventory.push_back(item);
+};
+void Player::removeInventory(Item* item) {
+	;
+};
 void Player::updateTurn() {};
 void Player::updateScore(int newScore) {};
 void Player::resetScore(int score) {};

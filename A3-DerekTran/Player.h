@@ -30,8 +30,8 @@ public:
 	int getTurn();
 	int getScore();
 	//Mutator Functions
-	void addInventory(Item);
-	void removeInventory(Item);
+	void addInventory(Item* item);
+	void removeInventory(Item* item);
 	void updateTurn();
 	void updateScore(int newScore);
 	void resetScore(int score);
@@ -41,7 +41,7 @@ public:
 private:
 	//Variables
 	string playerName;
-	vector<Item> playerInventory;
+	vector<Item*> playerInventory;
 	int playerTurn;
 	int playerScore;
 };
