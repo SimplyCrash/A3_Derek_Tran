@@ -333,7 +333,7 @@ void MurderGame::playGame() {
 	//cout << "What now? " << userInput;
 	//START THE GAME REPETITION
 
-	Player p1(playerName);
+	Player* p1 = new Player(playerName);
 	program = true;
 	do
 	{
@@ -377,6 +377,8 @@ void MurderGame::playGame() {
 			cout << locationNamesList[i] << "\n";
 			locationVector[i]->debugPrintItems();
 		}
+
+		p1->printInventory();
 
 		pause();
 
@@ -422,7 +424,7 @@ void MurderGame::playGame() {
 
 				for (int i = 0; i < locationVector[locationIndex]->getSuspects().size(); i++) {
 					if (locationVector[locationIndex]->getSuspects()[i]->getRole() == "victim") {
-						cout << "\n" << suspectVector[0]->getSuspect() << "is dead on the floor";
+						cout << "\n" << suspectVector[0]->getSuspect() << " is dead on the floor";
 					}
 					else {
 						cout << "\n" << locationVector[locationIndex]->printSuspect(i) << " is standing in the room.";
@@ -443,7 +445,7 @@ void MurderGame::playGame() {
 			}
 			else {
 				for (int i = 0; i < locationVector[locationIndex]->getItems().size(); i++) {
-					locationVector[locationIndex]->printItem(i); //NEED TO CHANGE TO DESCRIPTION ONLY
+					locationVector[locationIndex]->getItems(); //NEED TO CHANGE TO DESCRIPTION ONLY
 				}
 			}
 
@@ -457,21 +459,31 @@ void MurderGame::playGame() {
 				cout << "Wrong GET parameters";
 			}
 			else {
-				locationVector[locationIndex]->removeItem(itemVector[itemIndex]); //Removes item from location
-				p1.addInventory(itemVector[itemIndex]); //FIX PLAYER INSTANCE //Adds item to inventory
+				locationVector[locationIndex]->removeItem(locationVector[locationIndex]->getItems()[itemIndex]); //Removes item from location
+				p1->addInventory(locationVector[locationIndex]->getItems()[itemIndex]); //FIX PLAYER INSTANCE //Adds item to inventory
 			}
 		}
 
 		else if (userInputVector[0] == "DROP") {
-			itemIndex = returnItemIndex(locationIndex, userInputVector[1]);
-			if (itemIndex >= locationVector[locationIndex]->getItems().size()) {
+			int index = 0;
+			bool itemExist = false;
+			while (itemNamesList[index] != userInputValue) {
+				index++;
+			}
+			for (int i = 0; i < p1->getInventory().size(); i++) {
+				if (p1->getInventory()[i] == itemVector[index]) {
+					itemExist = true;
+				}
+			}
+
+			if (!itemExist) {
 				cout << "Wrong DROP Parameters";
 			}
 			else {
-				locationVector[locationIndex]->addItem(itemVector[itemIndex]); //Adds item to location
-				p1.removeInventory(itemVector[itemIndex]); //Removes item from inventory
+				locationVector[locationIndex]->addItem(itemVector[index]); //Adds item to location
+				p1->removeInventory(itemVector[index]); //Removes item from inventory
 			}
-			
+
 		}
 
 		else if (userInputVector[0] == "I" || userInputVector[0] == "INV") {
@@ -480,8 +492,7 @@ void MurderGame::playGame() {
 			cout << border << "\n";
 			cout << "Inventory" << "\n";
 			cout << border << "\n";
-			
-			//FOR LOOP TO DISPLAY IVENTORY VECTOR
+			cout << p1->printInventory();
 		}
 
 		else if (userInputVector[0] == "QUESTION") { //DONE

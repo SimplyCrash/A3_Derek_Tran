@@ -26,10 +26,11 @@ class MurderGame{
         int locationIndex;
         int suspectIndex;
         int itemIndex;
+
         string playerName;
         string userInputValue;
         vector<string> alibiVector;
-        vector<string>userInputVector;
+        vector<string> userInputVector;
         bool program;
         string currentLocation;
 

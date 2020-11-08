@@ -11,6 +11,7 @@
 #include <cstdlib>
 #include "Suspect.h"
 #include "Item.h"
+#include "Location.h"
 #pragma once
 
 using namespace std;
@@ -26,7 +27,7 @@ public:
 	//~Player();
 	//Accessor Functions
 	string getName();
-	string getInventory();
+	vector<Item*> getInventory();
 	int getTurn();
 	int getScore();
 	//Mutator Functions
@@ -36,7 +37,7 @@ public:
 	void updateScore(int newScore);
 	void resetScore(int score);
 	//Extra functions
-	void printInventory();
+	string printInventory();
 
 private:
 	//Variables

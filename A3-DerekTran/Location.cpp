@@ -51,12 +51,14 @@ void Location::addItem(Item* item) {
 	locationItems.push_back(item); 
 }
 void Location::removeItem(Item* item) {
-	vector<Item*> newList = {};
-	for (int i = 0; i < locationItems.size(); i++)
-		if (locationItems[i] != item) {
-			newList.push_back(item);
-		}
-	locationItems = newList;
+    vector<Item*> newList = {};
+    for (int i = 0; i < locationItems.size(); i++) {
+        cout << locationItems[i];
+        if (locationItems[i] != item) {
+            newList.push_back(item);
+        }
+    }
+    locationItems = newList;
 }
 void Location::setLocationCondition(string condition) { 
 	locationCondition = condition; 
